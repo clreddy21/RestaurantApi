@@ -1,28 +1,9 @@
-== README
+Please run following commands after cloning/downloading the app,
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+bundle install
+rake db:migrate
+rake db:seed
 
-Things you may want to cover:
+Now start the rails server and you can access the restaurants filtered by pincodes by using following url,
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+GET:  http://localhost:3000/api/v1/get_restaurants_by_pin_code.json?pincode=10004
