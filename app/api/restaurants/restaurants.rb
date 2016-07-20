@@ -1,6 +1,5 @@
 module Restaurants
   class Restaurants < Grape::API
-
     resource :get_restaurants_by_pin_code do
       desc 'List of orders of service provider'
       params do
@@ -9,19 +8,17 @@ module Restaurants
 
       get do
         restaurants = Restaurant.where(pincode: params[:pincode])
-        orders = Order.includes(:customer).where(service_provider_id: params[:sp_id])
-        orders_hash = []
-        if !orders.blank?
-          orders.each do |order|
-
-            orders_hash << {:order_id => order.id, :customer_id => order.customer_id,
-                            :customer_name => order.customer.full_name, :total_cost => order.total_cost.to_i,
-                            :customer_mobile => order.customer.mobile, :status_id => order.status_id}
+        
+        restaurants_hash = []
+        if !restaurants.blank?
+          restaurants.each do |restaurant|
+            restaurants_hash << {:name => restaurant.name, :mobile => restaurant.mobile, :address => restaurant.address, :rating => restaurant.rating, :pincode => restaurant.pincode}
           end
+          restaurants_hash
+        else
+          {'success':false, message: 'invalid pincode'}
         end
-        orders_hash
       end
     end
-
   end
 end
