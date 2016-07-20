@@ -1,7 +1,9 @@
 Please run following commands after cloning/downloading the app,
 
 bundle install
+
 rake db:migrate
+
 rake db:seed
 
 Now start the rails server and you can access the restaurants filtered by pincodes by using following url,
